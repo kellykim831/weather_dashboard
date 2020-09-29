@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // Event listener for search button element
     $("#search-button").on("click", function() {
       var searchCity = $("#search-city").val();
   
@@ -9,6 +10,7 @@ $(document).ready(function() {
     });
   
     $(".history").on("click", "li", function() {
+    // In this case, the "this" keyword refers to the button that was clicked.
       searchClimate($(this).text());
     });
   
@@ -18,6 +20,7 @@ $(document).ready(function() {
     }
   
     function searchClimate(searchCity) {
+    // Performing our AJAX GET request
       $.ajax({
         type: "GET",
         url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=3af88076e37153670ec76a89f5ecc44f&units=imperial",
@@ -37,10 +40,14 @@ $(document).ready(function() {
           // create html content for current weather
           var title = $("<h3>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ")");
           var card = $("<div>").addClass("card");
+          // create a paragraph tag with the wind speed
           var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH");
+          // create a paragraph tag with the humidity
           var humid = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
+          // create a paragraph tag with temperature
           var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
           var cardBody = $("<div>").addClass("card-body");
+          // creating an image tag
           var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
   
           // merge and add to page
@@ -57,6 +64,7 @@ $(document).ready(function() {
     }
     
     function forecast(searchCity) {
+        // performing our AJAX GET request
       $.ajax({
         type: "GET",
         url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&appid=3af88076e37153670ec76a89f5ecc44f&units=imperial",
@@ -72,7 +80,7 @@ $(document).ready(function() {
               // create html elements for a bootstrap card
               var col = $("<div>").addClass("col-md-2");
               var card = $("<div>").addClass("card bg-primary text-white");
-              var body = $("<div>").addClass("card-body p-2");
+              var body = $("<div>").addClass("card-body p-3");
   
               var title = $("<h5>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
   
@@ -109,7 +117,7 @@ $(document).ready(function() {
           else {
             btn.addClass("btn-danger");
           }
-          
+          //appending the button
           $("#today .card-body").append(uv.append(btn));
         }
       });
@@ -118,10 +126,11 @@ $(document).ready(function() {
     // get current history, if any
     var history = JSON.parse(window.localStorage.getItem("history")) || [];
   
+    
     if (history.length > 0) {
       searchClimate(history[history.length-1]);
     }
-  
+    // looping over every city that was input
     for (var i = 0; i < history.length; i++) {
       listCities(history[i]);
     }
