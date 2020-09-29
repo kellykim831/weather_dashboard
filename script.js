@@ -32,6 +32,30 @@ $(document).ready(function() {
         
               ListCities(searchCity);
             }
-  
+             
+            // clear any old content
+            $("#today").empty();
+
+            // create html content for current weather
+            var title = $("<h3>").addClass("card-title").text(data.name + " (" + new Date().toLocaleDateString() + ")");
+            var structure = $("<div>").addClass("structure");
+            var wind = $("<p>").addClass("card-text").text("Wind Speed: " + data.wind.speed + " MPH");
+            var humidity = $("<p>").addClass("card-text").text("Humidity: " + data.main.humidity + "%");
+            var fahrenheit = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
+            var layout = $("<div>").addClass("layout");
+            var photo = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+            
+            // merge and add to page
+            title.append(photo);
+            cardBody.append(title, fahrenheit, humidity, wind);
+            card.append(layout);
+            $("#today").append(structure);
+
+            // call follow-up api endpoints
+            Forecast(searchCity);
+            UVIndex(data.coord.lat, data.coord.lon);
+            }
+        });
+     }
    
   });
