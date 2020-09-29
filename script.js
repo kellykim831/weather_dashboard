@@ -16,7 +16,19 @@ $(document).ready(function() {
         $(".history").append(li);
       }
 
-    
+      function searchClimate(searchCity) {
+        $.ajax({
+          type: "GET",
+          url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=3af88076e37153670ec76a89f5ecc44f&units=imperial",
+          dataType: "json",
+          success: function(data) {
+            // create history link for this search
+            if (history.indexOf(searchCity) === -1) {
+              history.push(searchCity);
+              window.localStorage.setItem("history", JSON.stringify(history));
+        
+              ListCities(searchCity);
+            }
   
    
   });
