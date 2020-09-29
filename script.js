@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    //Event listener for all button elements.
     $("#search-button").on("click", function() {
       var searchCity = $("#search-city").val();
 
@@ -8,6 +9,7 @@ $(document).ready(function() {
     });
 
     $(".history").on("click", "li", function() {
+        // In this case, the "this" keyword refers to the button that was clicked
         searchClimate($(this).text());
     });
 
@@ -17,6 +19,7 @@ $(document).ready(function() {
       }
 
       function searchClimate(searchCity) {
+          // Performing our AJAX GET request
         $.ajax({
           type: "GET",
           url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=3af88076e37153670ec76a89f5ecc44f&units=imperial",
