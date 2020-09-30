@@ -49,6 +49,7 @@ The following platforms were required to build this website:
 ## Acknowledgments
 
 * [Link to Google](https://www.google.com)
+* [Link to AJAX](https://www.w3schools.com/xml/ajax_intro.asp)
 * [Link to W3 Schools](https://www.w3schools.com)
 * [console.log()](https://developer.mozilla.org/en-US/docs/Web/API/Console/log)
 * [Element.innerHTML](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML)
