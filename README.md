@@ -35,7 +35,7 @@ The following platforms were required to build this website:
 
 ## Deployed Link
 
-* [See Live Site]( https://kellykim831.github.io/Work-Day-Scheduler/)
+* [See Live Site](https://kellykim831.github.io/weather_dashboard/)
 
 
 ## Authors
