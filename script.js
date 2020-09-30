@@ -28,7 +28,7 @@ $(document).ready(function() {
         url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=" + key + "&units=imperial",
         dataType: "json",
         //data is coming from the response of the url
-        success: function(data) {
+    }).then(function (data) {
           // create history link for this search. Index of -1 means if city is not listed, add it to the list.
           if (history.indexOf(searchCity) === -1) {
             history.push(searchCity);
@@ -62,8 +62,8 @@ $(document).ready(function() {
           // call follow-up api endpoints
           forecast(searchCity);
           uvIndex(data.coord.lat, data.coord.lon);
-        }
-      });
+        
+    });
     }
     
     function forecast(searchCity) {
@@ -72,7 +72,7 @@ $(document).ready(function() {
         type: "GET",
         url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&appid=" + key + "&units=imperial",
         dataType: "json",
-        success: function(data) {
+    }).then(function (data) {
           // overwrite any existing content with title and empty row
           $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast:</h4>").append("<div class=\"row\">");
   
@@ -97,7 +97,7 @@ $(document).ready(function() {
               $("#forecast .row").append(col);
             }
           }
-        }
+        
       });
     }
   
@@ -106,7 +106,7 @@ $(document).ready(function() {
         type: "GET",
         url: "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon,
         dataType: "json",
-        success: function(data) {
+    }).then(function (data) {
           var uv = $("<p>").text("UV Index: ");
           var btn = $("<span>").addClass("btn btn-sm").text(data.value);
           
@@ -125,7 +125,7 @@ $(document).ready(function() {
           }
           
           $("#today .card-body").append(uv.append(btn));
-        }
+        
       });
     }
   
