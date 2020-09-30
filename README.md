@@ -30,7 +30,7 @@ The following platforms were required to build this website:
 ## Built With
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [jQuery](https://jquery.com)
 * [Javascript](https://developer.mozilla.org/en-US/doc/Web/CSS)
 
 ## Deployed Link
