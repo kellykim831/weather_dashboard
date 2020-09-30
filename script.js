@@ -25,7 +25,7 @@ $(document).ready(function() {
     // Performing our AJAX GET request
       $.ajax({
         type: "GET",
-        url: "http://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=" + key + "&units=imperial",
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=" + key + "&units=imperial",
         dataType: "json",
         //data is coming from the response of the url
     }).then(function (data) {
@@ -51,7 +51,7 @@ $(document).ready(function() {
           var temp = $("<p>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
           var cardBody = $("<div>").addClass("card-body");
           // creating an image tag
-          var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+          var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
   
           // merge and add to page
           title.append(img);
@@ -70,7 +70,7 @@ $(document).ready(function() {
         // performing our AJAX GET request
       $.ajax({
         type: "GET",
-        url: "http://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&appid=" + key + "&units=imperial",
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&appid=" + key + "&units=imperial",
         dataType: "json",
     }).then(function (data) {
           // overwrite any existing content with title and empty row
@@ -87,7 +87,7 @@ $(document).ready(function() {
   
               var title = $("<h5>").addClass("card-title").text(new Date(data.list[i].dt_txt).toLocaleDateString());
   
-              var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
+              var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
   
               var p1 = $("<p>").addClass("card-text").text("Temp: " + data.list[i].main.temp_max + " °F");
               var p2 = $("<p>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + "%");
@@ -104,7 +104,7 @@ $(document).ready(function() {
     function uvIndex(lat, lon) {
       $.ajax({
         type: "GET",
-        url: "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon,
+        url: "https://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon,
         dataType: "json",
     }).then(function (data) {
           var uv = $("<p>").text("UV Index: ");
